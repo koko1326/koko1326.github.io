@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Christian David (koko1326)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- RESET Y ESTILOS GLOBALES --- */
+        :root {
+            --bg-color: #101010;
+            --text-color: #f0f0f0;
+            --primary-color: #007bff;
+            --card-bg: #1a1a1a;
+            --gap: 2vw;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Evita el desbordamiento horizontal */
+        }
+
+        /* --- ENCABEZADO --- */
+        .hero-header {
+            text-align: center;
+            padding: 100px 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 40vh;
+        }
+
+        .hero-header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem); /* Tamaño de fuente adaptable */
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-header p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 600px;
+            color: #a0a0a0;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-header .github-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .hero-header .github-link:hover {
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+
+        /* --- GRID DE PROYECTOS (EL EFECTO PRINCIPAL) --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap);
+            padding: 0 var(--gap);
+            perspective: 1000px; /* Para efectos 3D si se desean */
+        }
+        
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+            will-change: transform; /* Optimización para el navegador */
+        }
+
+        /* --- TARJETAS DE PROYECTO --- */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background-color: var(--card-bg);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 3 / 4; /* Proporción ideal para las imágenes */
+            object-fit: cover;
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+
+        .project-card:hover img {
+            filter: brightness(0.9);
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 20px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .project-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .project-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .project-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            color: #a0a0a0;
+        }
+
+        /* --- DISEÑO RESPONSIVO PARA MÓVILES --- */
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr; /* Una sola columna */
+            }
+
+            /* Desactivamos el efecto de scroll en móvil, ya que no tiene sentido */
+            .column {
+                transform: none !important; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-header">
+        <h1>Christian David</h1>
+        <p>Desarrollador Frontend apasionado por crear experiencias de usuario interactivas y visualmente atractivas. Aquí puedes ver una selección de mis proyectos.</p>
+        <a href="https://github.com/koko1326" target="_blank" class="github-link">Ver mi GitHub</a>
+    </header>
+
+    <main class="portfolio-grid">
+        <!-- =================================================================== -->
+        <!-- COLUMNA 1 - Se mueve un poco más lento en el scroll -->
+        <!-- =================================================================== -->
+        <div class="column" id="column1">
+            <!-- INICIO PROYECTO 1 -->
+            <div class="project-card">
+                <!-- 
+                    INSTRUCCIÓN:
+                    Reemplaza el `src` con una captura de tu proyecto.
+                    Puedes usar una herramienta como https://shots.so/ para crear mockups atractivos.
+                    Usa imágenes verticales para un mejor efecto.
+                -->
+                <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto E-commerce">
+                <div class="project-info">
+                    <h3>E-commerce Page</h3>
+                    <a href="https://github.com/koko1326/ecomerce-page-product" target="_blank">Ver en GitHub</a>
+                </div>
+            </div>
+            <!-- FIN PROYECTO 1 -->
+            
+            <!-- INICIO PROYECTO 2 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto Chat App">
+                <div class="project-info">
+                    <h3>Chat App CSS Illustration</h3>
+                    <a href="https://github.com/koko1326/chat-app-css-illustration-master" target="_blank">Ver en GitHub</a>
+                </div>
+            </div>
+            <!-- FIN PROYECTO 2 -->
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- COLUMNA 2 - La columna central, se mueve más rápido -->
+        <!-- =================================================================== -->
+        <div class="column" id="column2">
+            <!-- INICIO PROYECTO 3 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1487017159836-4e231441de1e?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto QR Code">
+                <div class="project-info">
+                    <h3>QR Code Component</h3>
+                    <a href="https://github.com/koko1326/qr-code-component-main" target="_blank">Ver en GitHub</a>
+                </div>
+            </div>
+            <!-- FIN PROYECTO 3 -->
+
+            <!-- INICIO PROYECTO 4 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto Landing Page">
+                <div class="project-info">
+                    <h3>Huddle Landing Page</h3>
+                    <a href="https://github.com/koko1326/huddle-landing-page-with-single-introductory-section-master" target="_blank">Ver en GitHub</a>
+                </div>
+            </div>
+            <!-- FIN PROYECTO 4 -->
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- COLUMNA 3 - Se mueve igual que la primera -->
+        <!-- =================================================================== -->
+        <div class="column" id="column3">
+            <!-- INICIO PROYECTO 5 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto Results Summary">
+                <div class="project-info">
+                    <h3>Results Summary</h3>
+                    <a href="https://github.com/koko1326/results-summary-component-main" target="_blank">Ver en GitHub</a>
+                </div>
+            </div>
+            <!-- FIN PROYECTO 5 -->
+
+            <!-- INICIO PROYECTO 6 -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" alt="Vista previa de otra Landing Page">
+                <div class="project-info">
+                    <h3>Otra Landing Page</h3>
+                    <a href="https://github.com/koko1326/landing-page" target="_blank">Ver en GitHub</a>
+                </div>
+            </div>
+            <!-- FIN PROYECTO 6 -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 - Creado por Christian David (koko1326)</p>
+    </footer>
+
+    <script>
+        // --- SCRIPT PARA EL EFECTO DE SCROLL PARALLAX ---
+        
+        // Seleccionamos las columnas
+        const column1 = document.getElementById('column1');
+        const column2 = document.getElementById('column2');
+        const column3 = document.getElementById('column3');
+
+        // Solo ejecutamos el script si no estamos en un dispositivo móvil (donde el layout es de una columna)
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                // Obtenemos la cantidad de scroll vertical
+                const scrollY = window.scrollY;
+
+                // Aplicamos una transformación `translateY` a cada columna con diferentes multiplicadores
+                // para crear el efecto de diferentes velocidades.
+                // Usamos valores negativos para que las columnas se muevan hacia arriba al hacer scroll hacia abajo.
+                
+                // Columnas 1 y 3 se mueven a una velocidad lenta
+                column1.style.transform = `translateY(${scrollY * -0.1}px)`;
+                column3.style.transform = `translateY(${scrollY * -0.1}px)`;
+                
+                // La columna 2 (central) se mueve a una velocidad mayor para crear el contraste
+                column2.style.transform = `translateY(${scrollY * -0.25}px)`;
+            });
+        }
+    </script>
+
+</body>
+</html>
