@@ -1,267 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de Carlos Vizoso en Github (koko1326)</title>
+    <title>Image to JSON Description</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* --- RESET Y ESTILOS GLOBALES --- */
-        :root {
-            --bg-color: #101010;
-            --text-color: #f0f0f0;
-            --primary-color: #007bff;
-            --card-bg: #1a1a1a;
-            --gap: 2vw;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Evita el desbordamiento horizontal */
-        }
-
-        /* --- ENCABEZADO --- */
-        .hero-header {
-            text-align: center;
-            padding: 100px 20px 60px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 40vh;
-        }
-
-        .hero-header h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem); /* Tamaño de fuente adaptable */
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-header p {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            max-width: 600px;
-            color: #a0a0a0;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-header .github-link {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .hero-header .github-link:hover {
-            transform: scale(1.05);
-            background-color: #0056b3;
-        }
-
-        /* --- GRID DE PROYECTOS (EL EFECTO PRINCIPAL) --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--gap);
-            padding: 0 var(--gap);
-            perspective: 1000px; /* Para efectos 3D si se desean */
-        }
-        
-        .column {
-            display: flex;
-            flex-direction: column;
-            gap: var(--gap);
-            will-change: transform; /* Optimización para el navegador */
-        }
-
-        /* --- TARJETAS DE PROYECTO --- */
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            background-color: var(--card-bg);
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .project-card:hover {
-            transform: scale(1.02);
-            z-index: 10;
-        }
-        
-        .project-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 3 / 4; /* Proporción ideal para las imágenes */
-            object-fit: cover;
-            transition: filter 0.4s ease, transform 0.4s ease;
-        }
-
-        .project-card:hover img {
-            filter: brightness(0.9);
-            transform: scale(1.05);
-        }
-
-        .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 20px 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
-            transform: translateY(100%);
-            opacity: 0;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-
-        .project-card:hover .project-info {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .project-info h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .project-info a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .project-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 80px 20px;
-            color: #a0a0a0;
-        }
-
-        /* --- DISEÑO RESPONSIVO PARA MÓVILES --- */
-        @media (max-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: 1fr; /* Una sola columna */
-            }
-
-            /* Desactivamos el efecto de scroll en móvil, ya que no tiene sentido */
-            .column {
-                transform: none !important; 
-            }
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Highlight.js for JSON formatting -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
 </head>
+
 <body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                </div>
+                <h1>Image to JSON Description Tool</h1>
+            </div>
 
-    <header class="hero-header">
-        <h1>Portfolio de Carlos Vizoso en Github</h1>
-        <p>Innovador inquieto y curioso</p>
-        <a href="https://github.com/koko1326" target="_blank" class="github-link">Ver mi GitHub</a>
-    </header>
+            <div class="api-key-container">
+                <input type="password" id="apiKeyInput" placeholder="Enter Gemini API Key" class="api-key-input">
+                <button id="saveKeyBtn" class="icon-btn" title="Save Key">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </header>
 
-    <main class="portfolio-grid">
-        <!-- =================================================================== -->
-        <!-- COLUMNA 1 - Se mueve un poco más lento en el scroll -->
-        <!-- =================================================================== -->
-        <div class="column" id="column1">
-            <!-- INICIO PROYECTO 1 -->
-            <div class="project-card">
-                <!-- 
-                    INSTRUCCIÓN:
-                    Reemplaza el `src` con una captura de tu proyecto.
-                    Puedes usar una herramienta como https://shots.so/ para crear mockups atractivos.
-                    Usa imágenes verticales para un mejor efecto.
-                -->
-                <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto E-commerce">
-                <div class="project-info">
-                    <h3>Masterclass API</h3>
-                    <a href="https://github.com/koko1326/masterclassAPI" target="_blank">Ver en GitHub</a>
+        <!-- Main Content -->
+        <main class="main-grid">
+            <div class="header-section">
+                <h2>Image to JSON Description</h2>
+                <p>Upload an image to automatically generate a detailed JSON description.</p>
+            </div>
+
+            <div class="content-row">
+                <!-- Left Column: Upload & Preview -->
+                <div class="left-col">
+                    <!-- Upload Card -->
+                    <div class="card upload-card">
+                        <h3>Upload Your Image</h3>
+                        <div class="drop-zone" id="dropZone">
+                            <div class="drop-zone-content">
+                                <div class="upload-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <span class="upload-title">Upload Your Image</span>
+                                <p class="upload-hint">Drag & drop an image here, or click to browse. Supports JPG, PNG.
+                                    Max file size: 5MB.</p>
+                                <button class="btn-secondary file-trigger">Browse Files</button>
+                                <input type="file" id="fileInput"
+                                    accept="image/png, image/jpeg, image/jpg, application/pdf" hidden>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Card -->
+                    <div class="card preview-card" id="previewCard" style="display: none;">
+                        <h3>Image Preview</h3>
+                        <div class="preview-content">
+                            <div class="preview-image-container">
+                                <img id="previewImg" src="" alt="Preview">
+                            </div>
+                            <div class="file-info">
+                                <span id="fileName" class="file-name">filename.jpg</span>
+                                <span id="fileSize" class="file-size">2.1 MB</span>
+                            </div>
+                            <button class="remove-btn" id="removeFileBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button id="generateBtn" class="btn-primary" disabled>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sparkle-icon">
+                            <path
+                                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                        </svg>
+                        Generate Description
+                    </button>
+                </div>
+
+                <!-- Right Column: Output -->
+                <div class="right-col">
+                    <div class="card output-card">
+                        <div class="card-header">
+                            <h3>JSON Output</h3>
+                            <button class="btn-copy" id="copyBtn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+                        <div class="output-content">
+                            <pre><code class="language-json" id="jsonOutput">// JSON output will appear here...</code></pre>
+                            <div class="loading-overlay" id="loadingOverlay">
+                                <div class="spinner"></div>
+                                <span>Analyzing image with Gemini...</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- FIN PROYECTO 1 --v
-            
-           
+        </main>
+    </div>
+    <!-- Tutorial Elements -->
+    <div id="tutorialOverlay" class="tutorial-overlay hidden">
+        <div id="tutorialSpotlight" class="tutorial-spotlight"></div>
+        <div id="tutorialTooltip" class="tutorial-tooltip">
+            <h4 id="tutorialTitle">Title</h4>
+            <p id="tutorialText">Description</p>
+            <div class="tutorial-controls">
+                <span id="tutorialStepCount">1/4</span>
+                <button id="tutorialNextBtn" class="btn-secondary btn-sm">Next</button>
+            </div>
         </div>
+    </div>
 
-        <!-- =================================================================== -->
-        <!-- COLUMNA 2 - La columna central, se mueve más rápido -->
-        <!-- =================================================================== -->
-    <div class="column" id="column2">
-
-            <!-- INICIO PROYECTO 4 -->
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto Landing Page">
-                <div class="project-info">
-                    <h3>ButterKnife project</h3>
-                    <a href="https://github.com/koko1326/ButterKnifeExample" target="_blank">Ver en GitHub</a>
-                </div>
-            </div>
-            <!-- FIN PROYECTO 4 -->
-        </div>
-        <!-- =================================================================== -->
-        <!-- COLUMNA 3 - Se mueve igual que la primera -->
-        <!-- =================================================================== -->
-        <div class="column" id="column3">
-            <!-- INICIO PROYECTO 5 -->
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Vista previa del proyecto Results Summary">
-                <div class="project-info">
-                    <h3>Notifications to wear</h3>
-                    <a href="https://github.com/koko1326/NotificationsToWear" target="_blank">Ver en GitHub</a>
-                </div>
-            </div>
-            <!-- FIN PROYECTO 5 -->
-</div>
-          
-    </main>
-
-    <footer>
-        <p>© 2024 - Creado por Carlos Vizoso (koko1326)</p>
-    </footer>
-
-    <script>
-        // --- SCRIPT PARA EL EFECTO DE SCROLL PARALLAX ---
-        
-        // Seleccionamos las columnas
-        const column1 = document.getElementById('column1');
-        const column2 = document.getElementById('column2');
-        const column3 = document.getElementById('column3');
-
-        // Solo ejecutamos el script si no estamos en un dispositivo móvil (donde el layout es de una columna)
-        if (window.innerWidth > 768) {
-            window.addEventListener('scroll', () => {
-                // Obtenemos la cantidad de scroll vertical
-                const scrollY = window.scrollY;
-
-                // Aplicamos una transformación `translateY` a cada columna con diferentes multiplicadores
-                // para crear el efecto de diferentes velocidades.
-                // Usamos valores negativos para que las columnas se muevan hacia arriba al hacer scroll hacia abajo.
-                
-                // Columnas 1 y 3 se mueven a una velocidad lenta
-                column1.style.transform = `translateY(${scrollY * -0.1}px)`;
-                column3.style.transform = `translateY(${scrollY * -0.1}px)`;
-                
-                // La columna 2 (central) se mueve a una velocidad mayor para crear el contraste
-                column2.style.transform = `translateY(${scrollY * -0.25}px)`;
-            });
-        }
-    </script>
-
+    <div id="toast" class="toast">API Key Saved Successfully!</div>
+    <script src="app.js"></script>
 </body>
+
 </html>
